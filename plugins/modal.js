@@ -1,4 +1,19 @@
 //приватна ф-ія
+Element.prototype.appendAfter = function(element) {
+    
+}
+
+
+function _createModalFooter(buttons = []) {
+    if (buttons.length===0) {
+        return document.createElement('div') 
+    }
+
+    const wrap = document.createElement('div') 
+    wrap.classList.add('modal-footer')
+
+    return wrap
+}
 
 function _createModal(options) {
     const DEFAULT_WIDTH = '600px'
@@ -14,14 +29,13 @@ modal.insertAdjacentHTML('afterbegin', `
         <div class="modal-body" data-content>
             ${options.content || ''}
         </div>
-        <div class="modal-footer">
-            <button>Ok</button>
-            <button>Cancel</button>
-        </div>
     </div>
 </div>
 `)
 
+
+const footer = _createModalFooter(options.footerButtons)
+footer.appendAfter(modal.querySelector('[data-content]'))
 document.body.appendChild(modal)
 return modal
 }
